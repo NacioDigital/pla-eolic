@@ -374,8 +374,9 @@ function deselect(){
 document.getElementById('back').addEventListener('click',deselect);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') deselect(); });
 map.addEventListener('click',e=>{ if(e.target===map||e.target.classList.contains('comarca')) deselect(); });
-</script>
-<script>
+
+
+
 function enviarAltura() {
   const altura = document.body.scrollHeight;
   window.parent.postMessage(
@@ -383,15 +384,19 @@ function enviarAltura() {
     '*'
   );
 }
+
 window.addEventListener('load', enviarAltura);
 window.addEventListener('resize', enviarAltura);
+
 window.addEventListener('message', function(e) {
   if (e.data && e.data.tipus === 'request-resize') {
     enviarAltura();
   }
 });
+
 const observer = new ResizeObserver(enviarAltura);
 observer.observe(document.body);
+  
 </script>
 </body>
 </html>
